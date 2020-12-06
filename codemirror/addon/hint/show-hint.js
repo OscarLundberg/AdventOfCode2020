@@ -166,6 +166,9 @@
   }
 
   function buildKeyMap(completion, handle) {
+
+
+    
     var baseMap = {
       Up: function() {handle.moveFocus(-1);},
       Down: function() {handle.moveFocus(1);},

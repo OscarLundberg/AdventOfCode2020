@@ -1,7 +1,7 @@
 /* BASICS */
 
-code>div.CodeMirror{
-  padding:0px !important;
+#home {
+  padding: 0px !important;
 }
 
 .CodeMirror {
@@ -164,8 +164,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
 .CodeMirror {
   position: relative;
   overflow: hidden;
-  /* background: white; */
+  /* background: transparent !important; */
 }
+
 
 .CodeMirror-scroll {
   overflow: scroll !important; /* Things will break if this is overridden */

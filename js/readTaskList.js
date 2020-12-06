@@ -30,8 +30,8 @@ function update() {
           <div class="col-md-6">
             <h4 class="float-right">
               <a href="#" onclick="move(-1, ${ind})" id="up-${ind}"><span class="badge badge-light"><i class="fas fa-arrow-up"></i></span></a>
-              <a href="#" onclick="move(-1, ${ind})" id="down-${ind}"><span class="badge badge-light"><i class="fas fa-arrow-down"></i></span></a>
-              <a href="#" id="code-${ind}"><span class="badge badge-success"><i class="fas fa-code"></i></span></a>
+              <a href="#" onclick="move(1, ${ind})" id="down-${ind}"><span class="badge badge-light"><i class="fas fa-arrow-down"></i></span></a>
+              <a href="/projects.php?task=${ind}" id="code-${ind}"><span class="badge badge-success"><i class="fas fa-code"></i></span></a>
               <a href="#" onclick="createEditor(${ind})" id="edit-${ind}"><span class="badge badge-warning"><i class="fas fa-cogs"></i></span></a>
               <a href="#" onclick="remove(${ind})" id="delete-${ind}"><span class="badge badge-danger"><i class="fas fa-trash"></i></span></a>
               <a href="#" onclick="duplicate(${ind})" id="duplicate-${ind}"><span class="badge badge-info"><i class="fas fa-copy"></i></span></a>
@@ -52,9 +52,11 @@ function update() {
   }
 }
 
-function setEditor(a = "", b = "") {
+function setEditor(a = "", b = "", c="", d=false) {
   $('#name-input').val(a)
   $('#data-input').val(b)
+  $('#puzzleData').val(c);
+  $('#numberData')[0].checked = d;
 }
 
 
@@ -66,33 +68,35 @@ function stopEditing() {
 function submitEdit(index) {
   editData({
     "name": $('#name-input').val(),
-    "inputfile": $('#data-input').val()
-  }, -1);
+    "inputfile": $('#data-input').val(),
+    "puzzleData": escape($('#puzzleData').val()),
+    "numberData": $('#numberData')[0].checked
+  }, index);
 }
 
 function createEditor(index) {
+  setEditor();
+  $('#post-btn').unbind();
   let target = dataContainer[index] || undefined;
   // let target = dataContainer.find(e => e.index === index);
   if (target) {
     $("#editor-text").html(`Editing <b>${target.name}</b>`);
 
-    setEditor(target.name, target.inputfile);
+    setEditor(target.name, target.inputfile, target.puzzleData, target.numberData);
   } else {
     $("#editor-text").html(`Editing <b>New Task</b>`);
     setEditor();
   }
+
   $('#post-btn').click(() => submitEdit(index))
-
   $('#editor').fadeIn(1000);
-
-
 }
 
 
 function editData(newData, index) {
   let target = dataContainer[index];//find(e => e.index === index);
   if (target) {
-    let keys = Object.keys(newObj)
+    let keys = Object.keys(newData)
     keys.map(x => {
       target[x] = newData[x];
     });
@@ -116,7 +120,7 @@ function postData() {
     data.index = i;
     i++;
   }
-  $.get('../taskEditor.php', { "postdata": JSON.stringify(dataContainer, null, 4) }, (response) => {
+  $.post('../taskEditor.php', { "postdata": JSON.stringify(dataContainer) }, (response) => {
     console.log(response);
   })
 }
@@ -128,5 +132,12 @@ function move(steps, index) {
 
 function remove(index) {
   dataContainer.splice(index, 1);
+  update();
+}
+
+function duplicate(ind) {
+  let target = { ...dataContainer[ind] };
+  target.name += "(copy)";
+  dataContainer.push(target);
   update();
 }

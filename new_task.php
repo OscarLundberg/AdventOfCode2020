@@ -31,6 +31,13 @@ include_once('./partials/header.php');
                     <input id="data-input" type="text" class="form-control" placeholder="data.txt">
                 </div>
             </div>
+            <textarea class="form-control mt-2" id="puzzleData" cols="30" rows="5" placeholder="PuzzleData"></textarea>
+            
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="numberData">
+                <label class="custom-control-label" for="numberData">Numerical data</label>
+            </div>
+
             <hr>
             <button id="clear-btn" type="button" class="btn btn-secondary">Cancel</button>
             <button id="post-btn" type="button" class="btn btn-primary">Submit</button>

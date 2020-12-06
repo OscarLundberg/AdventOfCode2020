@@ -7,12 +7,11 @@ include_once __DIR__ . '/helpers.php';
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    
+
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +30,10 @@ include_once __DIR__ . '/helpers.php';
     <!-- CodeMirror -->
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/theme/monokai.css">
+    <link rel="stylesheet" href="codemirror/addon/hint/show-hint.css">
+
+
     <script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="codemirror/mode/xml/xml.js"></script>
     <script src="codemirror/mode/javascript/javascript.js"></script>
@@ -40,6 +43,16 @@ include_once __DIR__ . '/helpers.php';
     <script src='codemirror/addon/selection/active-line.js'></script>
     <script src='codemirror/addon/edit/matchbrackets.js'></script>
     <script src='codemirror/addon/hint/show-hint.js'></script>
+    <script src='codemirror/addon/hint/anyword-hint.js'></script>
+
+    <link rel="stylesheet" href="codemirror/addon/lint/lint.css">
+    <script src='codemirror/addon/lint/lint.js'></script>
+
+    <!-- HOTKEYS -->
+    <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.7.3/dist/hotkeys.min.js"></script>
+
+    <!-- TOASTIFY -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -93,16 +106,28 @@ include_once __DIR__ . '/helpers.php';
         $pagename = "";
         if (!empty($_GET['name'])) {
             $pagename = $_GET['name'];
-
             if (isset($_GET['name'])) {
                 echo ("<h5>$pagename</h5>");
             }
         }
+        if (isset($_GET['task'])) {
+            $btn  = "<a href=\"?task=" . ((int)$_GET['task'] - 1) . "\">
+                        <button type=\"button\" class=\"btn btn-info\">
+                            <i class=\"fas fa-angle-left\"></i>
+                        </button
+                    </a>";
+            $btn2 = "<a href=\"?task=" . ((int)$_GET['task'] + 1) .  "\">
+                        <button type=\"button\" class=\"btn btn-info\">
+                            <i class=\"fas fa-angle-right\"></i>
+                        </button>
+                    </a>";
+            echo ("<div>" . $btn . $btn2 . "</div>");
+        }
+
         if ($pagename != "Create new task") {
-            echo ('<a href="/../new_task.php">New task...</a>');
+            echo ('<a href="/../new_task.php">Task Manager</a>');
         }
         ?>
-        <?php
-
-        ?>
     </nav>
+
+    
