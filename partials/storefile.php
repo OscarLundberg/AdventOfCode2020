@@ -1,6 +1,6 @@
 <?php
-    $code = $_GET['sourcecode'];
-    $filename = $_GET['file'];
+    $code = $_POST['sourcecode'];
+    $filename = $_POST['file'];
 
     file_put_contents("$filename", $code);
 ?>

@@ -109,7 +109,7 @@ $oldCode = file_get_contents($sourcefile);
                                         sourcecode: code,
                                         inputfile: inputFileName
                                     }
-                                    $.get('./partials/sandbox.php', data, (responseText, status, xhr) => {
+                                    $.post('./partials/sandbox.php', data, (responseText, status, xhr) => {
                                         // console.log(resp.output);
 
                                         // console.log(xhr);

@@ -29,7 +29,7 @@ $(document).ready(function () {
                 Down: function (e, h) {
                     h.moveFocus(1)
                 },
-                Escape: function (e, h) {
+                Esc: function (e, h) {
                     h.close()
                 },
                 Tab: function (e, h) {
@@ -56,11 +56,11 @@ $(document).ready(function () {
 });
 
 
-hotkeys('ctrl+r', function (event, handler) {
+hotkeys('ctrl+r,ctrl+s', function (event, handler) {
     switch (handler.key) {
         case 'ctrl+r': $('#exec-btn').click()
             break;
-        case 'ctrl+b': alert('you pressed ctrl+b!');
+        case 'ctrl+s': $('#store-btn').click()
             break;
         case 'r': alert('you pressed r!');
             break;
@@ -77,12 +77,14 @@ function zoomCode(i) {
 }
 
 function store(sourcecode, file) {
+    
     let data = {
         sourcecode,
         file
     }
 
-    $.get('../partials/storefile.php', data, (response) => {
+    $.post('../partials/storefile.php', data, (response) => {
+        Toastify({ text: "Saving...\n" + response, duration: 2000 }).showToast();
         console.log(response);
     })
 }

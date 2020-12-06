@@ -138,6 +138,7 @@ function remove(index) {
 function duplicate(ind) {
   let target = { ...dataContainer[ind] };
   target.name += "(copy)";
+  target.file = safeName(target.name);
   dataContainer.push(target);
   update();
 }

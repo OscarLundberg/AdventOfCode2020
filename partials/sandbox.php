@@ -1,14 +1,14 @@
 <?php
 include './helpers.php';
 
-$code = $_GET['sourcecode'];
-$inputfile = $_GET['inputfile'];
 
-if(empty($_GET['sourcecode'] || empty($_GET['inputfile']))){
+if(empty($_POST['sourcecode'] || empty($_POST['inputfile']))){
     die('Invalid input');
 }
 
-
+$code = $_POST['sourcecode'];
+$inputfile = $_POST['inputfile'];
+set_time_limit ( 30 ); 
 
 $input = str_to_int_array(file(__DIR__ . "/../data/" . $inputfile));
 
@@ -28,7 +28,13 @@ $sandbox = create_custom_function('$input', $code);
 $start = microtime(true);
 $output = $sandbox($input);
 $time = (microtime(true) - $start) * 1000;
-$elapsedTime = number_format($time * 1000, 1)  . " µs";
+$elapsedTime;// = number_format($time * 1000, 1);
+
+if($time > 1){
+    $elapsedTime = number_format($time, 2) . "ms" ;
+}else {
+    $elapsedTime = number_format($time * 1000, 2) . "µs";
+}
 
 $codeLen = count(explode("\n", $code));
 $dataLen = count($input);

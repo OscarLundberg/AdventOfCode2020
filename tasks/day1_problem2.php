@@ -1,7 +1,13 @@
-<?php
-//Generated on 06-12-20 01:18
+$target = 2020;
 
-function main() {
-return "no output";
+foreach($input as $a) {
+  foreach($input as $b) {
+    foreach($input as $c) {
+ 		if(($a + $b + $c) === $target){
+          return $a * $b * $c;
+        }
+    }
+  }
 }
-?>
+
+return null;
