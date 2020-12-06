@@ -10,7 +10,7 @@
                 // $file = $task['file'];
                 $ind = $task['index'];
                 $nm = $task['name'];
-                echo ('<a href="./projects.php?task='.$ind.'" class="list-group-item list-group-item-action">'.$nm.'</a>');
+                echo ('<a href="./projects.php?task=' . $ind . '" class="list-group-item list-group-item-action">' . $nm . '</a>');
             }
             ?>
         </ul>

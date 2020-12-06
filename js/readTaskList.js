@@ -111,6 +111,11 @@ function safeName(str) {
 
 function postData() {
   console.log("saving data");
+  let i = 0;
+  for (let data of dataContainer) {
+    data.index = i;
+    i++;
+  }
   $.get('../taskEditor.php', { "postdata": JSON.stringify(dataContainer, null, 4) }, (response) => {
     console.log(response);
   })

@@ -27,10 +27,12 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <code class="code tab-pane fade show active" id="home">
+                            <textarea class="codemirror-textarea" id="ed_code"></textarea>
                             <?php
-                            $source = show_source(__DIR__ . "/../tasks/" . $_GET["file"], true);
-                            print($source);
+                            // $source = show_source(__DIR__ . "/../tasks/" . $_GET["file"], true);
+                            // echo($source);
                             ?>
+                            </textarea>
                         </code>
                         <code class="code tab-pane fade" id="profile">
                             <?php
