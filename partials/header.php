@@ -7,8 +7,13 @@ include_once __DIR__ . '/helpers.php';
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -71,17 +76,19 @@ include_once __DIR__ . '/helpers.php';
             ?>
         </a>
         <?php
-        if(isset($_GET['name']))
-        {
+        $pagename = "";
+        if (!empty($_GET['name'])) {
             $pagename = $_GET['name'];
-            echo("<h5>$pagename</h5>");
+
+            if (isset($_GET['name'])) {
+                echo ("<h5>$pagename</h5>");
+            }
+        }
+        if ($pagename != "Create new task") {
+            echo ('<a href="/../new_task.php">New task...</a>');
         }
         ?>
         <?php
-        if(isset($_GET['name']))
-        {
-            $pagename = $_GET['name'];
-            echo("<h5>$pagename</h5>");
-        }
+
         ?>
     </nav>

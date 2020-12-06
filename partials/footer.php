@@ -70,7 +70,7 @@
                             echo ("<small style='font-size:11px' class=\"text-info\">");
                             echo ("<br>" . $_GET["codeLength"] . " lines of code");
                             echo ("<br>" . $_GET["dataLength"] . " rows of input data");
-                            echo ("<br>Executed in " . $_GET["elapsed_time"] . " ms");
+                            echo ("<br>Executed in " . number_format($_GET["elapsed_time"] * 1000, 1)  . " µs");
 
                             echo ("</small>");
                             ?>

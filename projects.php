@@ -2,7 +2,7 @@
 include __DIR__ . "/partials/header.php";
 
 
-$_GET['input'] = str_to_int_array(file( __DIR__ . "/data/" . $_GET['inputfile']));
+$_GET['input'] = str_to_int_array(file( __DIR__ . "/data/" . $item));
 $sourcefile = __DIR__ . "/tasks/" . $_GET['file'];
 include $sourcefile;
 
