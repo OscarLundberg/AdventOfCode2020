@@ -24,9 +24,9 @@ foreach ($taskArr as  &$value) {
     }
 
     if (!file_exists($path)) {
-        file_put_contents($path, "//Generated on " . date('d-m-y H:i') . "");
+        file_put_contents($path, "//Generated on " . date('d-m-y H:i') . "\n//Input exposed via the \$input variable");
     } else {
-        echo ("File exists");
+        echo ("File exists\n");
     }
 
     if (strpos($dataPath, "http") != false) {
@@ -48,7 +48,7 @@ foreach ($taskArr as  &$value) {
         }
         file_put_contents($dataPath, $file);
     } else {
-        echo ("File exists");
+        echo ("File exists\n");
     }
 }
 

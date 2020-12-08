@@ -1,18 +1,20 @@
-//Generated on 06-12-20 22:08
+//Generated on 07-12-20 06:28
 //Input exposed via the $input variable
+
 function validate($line){
 	$parts = explode(":", $line);
 	$policy = explode(" ", $parts[0]);
 	$vals = explode("-", $policy[0]);
-	$low = $vals[0];
-	$high = $vals[1];
+	$low = $vals[0] - 1;
+	$high = $vals[1] - 1;
 	$char = $policy[1];
   	$pw = str_replace(" ", "", $parts[1]);
-	$result = substr_count($pw, $char);
-  	if ((int)$result >= (int)$low && (int)$result <= (int)$high){
-		return true;
-	}
-  	return FALSE;
+	//if($high > strlen($pw)){
+		//debug($line . " $high = " . $pw[$high] . ", $low = " . $pw[$low] ); 
+ 	$a = $pw[$low] == $char; 
+  	$b = $pw[$high] == $char;
+  	
+  	return $a xor $b;
 }
 
 

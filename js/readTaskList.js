@@ -52,7 +52,7 @@ function update() {
   }
 }
 
-function setEditor(a = "", b = "", c="", d=false) {
+function setEditor(a = "", b = "", c = "", d = false) {
   $('#name-input').val(a)
   $('#data-input').val(b)
   $('#puzzleData').val(c);
@@ -69,7 +69,7 @@ function submitEdit(index) {
   editData({
     "name": $('#name-input').val(),
     "inputfile": $('#data-input').val(),
-    "puzzleData": escape($('#puzzleData').val()),
+    "puzzleData": $('#puzzleData').val(),
     "numberData": $('#numberData')[0].checked
   }, index);
 }
@@ -121,6 +121,11 @@ function postData() {
     i++;
   }
   $.post('../taskEditor.php', { "postdata": JSON.stringify(dataContainer) }, (response) => {
+    Toastify({
+      text: "Saving...",
+    }).showToast();
+    Toastify({ text: response }).showToast();
+
     console.log(response);
   })
 }

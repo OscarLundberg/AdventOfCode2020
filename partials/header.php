@@ -44,6 +44,7 @@ include_once __DIR__ . '/helpers.php';
     <script src='codemirror/addon/edit/matchbrackets.js'></script>
     <script src='codemirror/addon/hint/show-hint.js'></script>
     <script src='codemirror/addon/hint/anyword-hint.js'></script>
+    <script src="codemirror/addon/comment/comment.js"></script>
 
     <link rel="stylesheet" href="codemirror/addon/lint/lint.css">
     <script src='codemirror/addon/lint/lint.js'></script>
@@ -88,6 +89,27 @@ include_once __DIR__ . '/helpers.php';
             flex-grow: 1;
             overflow-y: scroll;
         }
+
+        code.code{
+            overflow-y: hidden;
+        }
+
+        code.float-left, code.float-right {
+            text-align: left;
+            max-width: 92%;
+            /* max-height: max-content; */
+            display: inline-block;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            scrollbar-width: 0px;
+            /* word-break: break-all;
+            white-space: pre-wrap; */
+            line-height: 1.2;
+        }
+
+        .debug {
+            width: 15px;
+        }
     </style>
 </head>
 
@@ -111,16 +133,22 @@ include_once __DIR__ . '/helpers.php';
             }
         }
         if (isset($_GET['task'])) {
-            $btn  = "<a href=\"?task=" . ((int)$_GET['task'] - 1) . "\">
-                        <button type=\"button\" class=\"btn btn-info\">
-                            <i class=\"fas fa-angle-left\"></i>
-                        </button
-                    </a>";
-            $btn2 = "<a href=\"?task=" . ((int)$_GET['task'] + 1) .  "\">
-                        <button type=\"button\" class=\"btn btn-info\">
-                            <i class=\"fas fa-angle-right\"></i>
-                        </button>
-                    </a>";
+            // $btn  = "<a href=\"?task=" . ((int)$_GET['task'] - 1) . "\">
+            //             <button type=\"button\" class=\"btn btn-info\">
+            //                 <i class=\"fas fa-angle-left\"></i>
+            //             </button
+            //         </a>";
+            // $btn2 = "<a href=\"?task=" . ((int)$_GET['task'] + 1) .  "\">
+            //             <button type=\"button\" class=\"btn btn-info\">
+            //                 <i class=\"fas fa-angle-right\"></i>
+            //             </button>
+            //         </a>";
+            $btn  = "<button type=\"button\" id=\"leftTask\" class=\"btn btn-info\">
+                <i class=\"fas fa-angle-left\"></i>
+            </button>";
+            $btn2  = "<button type=\"button\" id=\"rightTask\" class=\"btn btn-info\">
+                <i class=\"fas fa-angle-right\"></i>
+            </button>";
             echo ("<div>" . $btn . $btn2 . "</div>");
         }
 
@@ -129,5 +157,3 @@ include_once __DIR__ . '/helpers.php';
         }
         ?>
     </nav>
-
-    
